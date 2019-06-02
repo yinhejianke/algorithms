@@ -42,3 +42,7 @@ Tem sorted(Tem array, int PX = 1){
 //快速排序
 // template <class Tem>
 // Tem quick_sorted (Tem T, )
+template <class Tem>
+Tem quick_sorte(Tem T){
+  return T;
+}
