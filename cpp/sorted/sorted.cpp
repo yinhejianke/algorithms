@@ -16,8 +16,8 @@ using namespace std;
 
 // 冒泡 排序， 顺序与倒序 /
 template <class Tem>
-Tem sorted(Tem array, int PX = 1){
-    if (PX == 1){
+Tem sorted(Tem array, bool PX = false){
+    if ( !PX ){
       for(int index = 0 ; index < array.size(); index++){
         for (int another = 0; another < array.size(); another++){
           if (array[index] > array[another]){
