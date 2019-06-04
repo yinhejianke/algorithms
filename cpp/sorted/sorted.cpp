@@ -44,23 +44,30 @@ Tem sorted(Tem array, int PX = 1){
 
 //快速排序
 template <class Tem>
-void quick_sorte(Tem& arr, int first, int end){
+void quick_sorte(Tem& arr, int first, int end, bool PX = false){
   int i = first, j = end;
   auto flag = arr[first];
   if ( first < end ){
     while ( i < j ){
-      while ( i < j && arr[j] >= flag ) j--;
-      while ( i < j && arr[i] < flag ) i++;
+      if ( !PX )   {
+        while ( i < j && arr[j] > flag ) j--;
+        while ( i < j && arr[i] <= flag ) i++;
+      } else {
+        while ( i < j && arr[j] < flag ) j--;
+        while ( i < j && arr[i] >= flag ) i++;
+      }
       if( i < j ){
         auto te = arr[i];
         arr[i] = arr[j];
         arr[j] = te;
       }
     }
+
+    auto tttt = arr[first];
     arr[first] = arr[j];
-    arr[j] = flag;
-    quick_sorte(arr, first, j - 1);
-    quick_sorte(arr, j + 1, end);
+    arr[j] = tttt;
+    quick_sorte(arr, first, j - 1,  PX);
+    quick_sorte(arr, j + 1, end,  PX);
   }
   else{
     return ;
