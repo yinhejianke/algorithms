@@ -1,7 +1,7 @@
 /*
 *
-*
-*
+*2019.0604
+*auth: Yinhejianke
 *
 *
 */
@@ -42,7 +42,7 @@ Tem sorted(Tem array, bool PX = false){
 }
 
 
-//快速排序
+//快速排序  1
 template <class Tem>
 void quick_sorte(Tem& arr, int first, int end, bool PX = false){
   int i = first, j = end;
@@ -63,9 +63,41 @@ void quick_sorte(Tem& arr, int first, int end, bool PX = false){
       }
     }
 
-    auto tttt = arr[first];
+    auto middle_data = arr[first];
     arr[first] = arr[j];
-    arr[j] = tttt;
+    arr[j] = middle_data;
+    quick_sorte(arr, first, j - 1,  PX);
+    quick_sorte(arr, j + 1, end,  PX);
+  }
+  else{
+    return ;
+  }
+}
+
+//
+//快速排序  2
+template <class Tem>
+void quick_sorte_two(Tem& arr, int first, int end, bool PX = false){
+  int i = first, j = end;
+  auto flag = arr[(first + end)/2];
+  if ( first < end ){
+    while ( i < j ){
+      if ( !PX )   {
+        while ( i < j && arr[j] > flag ) j--;
+        while ( i < j && arr[i] <= flag ) i++;
+      } else {
+        while ( i < j && arr[j] < flag ) j--;
+        while ( i < j && arr[i] >= flag ) i++;
+      }
+      if( i < j ){
+        auto te = arr[i];
+        arr[i] = arr[j];
+        arr[j] = te;
+      }
+    }
+    // auto middle_data = arr[first];
+    // arr[first] = arr[j];
+    // arr[j] = middle_data;
     quick_sorte(arr, first, j - 1,  PX);
     quick_sorte(arr, j + 1, end,  PX);
   }
