@@ -1,0 +1,33 @@
+   思路：利用同向双指针，j为慢指针，i为快指针；j及之前元素的是非重复的项； i之后的是待重复检查的项；
+   用i遍历数组, 如果 nums[j] = nums[i]，当前i不会搬移到非重复项区域；
+   当我们遇到 nums[j] != nums[i]时，启动搬移过程, 我们需要：1. 递增 j (扩充非重复项数组区域) ；2. 并将nums[i]的值复制到 nums[j]；
+   然后，接着我们将再次重复相同的过程，直到 i 到达数组的末尾为止。
+   
+   //删除排序数组中的重复项 - 解答1
+    function removeDuplicates_1(&$nums){
+        if(count($nums)==0){
+            return 0;
+        }
+        $j = 0;
+        for($i=1;$i<count($nums);$i++){
+            if($nums[$j] != $nums[$i]){
+                $nums[++$j] = $nums[$i];
+            }
+        }
+        return ++$j;
+    }
+    //删除排序数组中的重复项 - 解答2
+    function removeDuplicates(&$nums){
+        if(count($nums)==0){
+            return 0;
+        }
+        $j = 0;
+        $temp = $nums[0];
+        for($i=1;$i<count($nums);$i++){
+            if($temp != $nums[$i]){
+                $temp = $nums[$i];
+                $nums[++$j] = $temp;
+            }
+        }
+        return ++$j;
+    }
