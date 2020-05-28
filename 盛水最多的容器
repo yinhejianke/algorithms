@@ -11,7 +11,7 @@ while(数组未遍历完成){
      1. 计算左右指针对应的面积：最小高度 * 两指针距离, 并更新最大面积
      2. 移动较小指针
 }
-实现代码：
+php实现代码：
     function maxArea($height) {
         $maxArea = 0;
         $left = 0;
